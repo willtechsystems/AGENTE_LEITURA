@@ -1,0 +1,445 @@
+[
+  {
+    "id": "ss-01",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "fone",
+    "dica": "Duas sílabas simples de 2 letras cada: FO + NE.",
+    "blocos": [
+      { "texto": "FO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "fô" },
+      { "texto": "NE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ne" }
+    ]
+  },
+  {
+    "id": "ss-02",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "tela",
+    "dica": "Junte a consoante com a vogal em cada bloco: TE + LA.",
+    "blocos": [
+      { "texto": "TE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "té" },
+      { "texto": "LA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "la" }
+    ]
+  },
+  {
+    "id": "ss-03",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "jogo",
+    "dica": "Cada bloco tem 2 letras formando um único som: JO + GO.",
+    "blocos": [
+      { "texto": "JO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "jô" },
+      { "texto": "GO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "go" }
+    ]
+  },
+  {
+    "id": "ss-04",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "meta",
+    "dica": "Leia em dois blocos rápidos: ME + TA.",
+    "blocos": [
+      { "texto": "ME", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "mé" },
+      { "texto": "TA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ta" }
+    ]
+  },
+  {
+    "id": "ss-05",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "música",
+    "dica": "Três sílabas simples. O acento deixa MÚ mais forte e o S entre vogais tem som de Z.",
+    "blocos": [
+      { "texto": "MÚ", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "mu" },
+      { "texto": "SI", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "zi" },
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" }
+    ]
+  },
+  {
+    "id": "ss-06",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "camisa",
+    "dica": "Três blocos de 2 letras. Entre vogais, SA tem som de ZA.",
+    "blocos": [
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" },
+      { "texto": "MI", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "mi" },
+      { "texto": "SA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "za" }
+    ]
+  },
+  {
+    "id": "ss-07",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "caneta",
+    "dica": "Três blocos regulares de 2 letras: CA + NE + TA.",
+    "blocos": [
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" },
+      { "texto": "NE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "nê" },
+      { "texto": "TA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ta" }
+    ]
+  },
+  {
+    "id": "ss-08",
+    "nivel": 1,
+    "categoria": "silabas_simples",
+    "palavra": "futuro",
+    "dica": "Três blocos simples. No meio da palavra, o R sozinho tem som brando (RO).",
+    "blocos": [
+      { "texto": "FU", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "fu" },
+      { "texto": "TU", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "tu" },
+      { "texto": "RO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ro" }
+    ]
+  },
+  {
+    "id": "dg-01",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "caminho",
+    "dica": "N + H juntos formam um único som nasalizado: NHO (3 letras juntas).",
+    "blocos": [
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" },
+      { "texto": "MI", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "mi" },
+      { "texto": "NHO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "nho" }
+    ]
+  },
+  {
+    "id": "dg-02",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "linha",
+    "dica": "Não leia N e H separados: NHA funciona como um bloco só de 3 letras.",
+    "blocos": [
+      { "texto": "LI", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "li" },
+      { "texto": "NHA", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "nha" }
+    ]
+  },
+  {
+    "id": "dg-03",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "sonho",
+    "dica": "Dois blocos: SO (2 letras) e o dígrafo NHO (3 letras).",
+    "blocos": [
+      { "texto": "SO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "sô" },
+      { "texto": "NHO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "nho" }
+    ]
+  },
+  {
+    "id": "dg-04",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "folha",
+    "dica": "L + H juntos formam o dígrafo LH: leia LHA como um bloco de 3 letras.",
+    "blocos": [
+      { "texto": "FO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "fô" },
+      { "texto": "LHA", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "lha" }
+    ]
+  },
+  {
+    "id": "dg-05",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "barulho",
+    "dica": "Repare no bloco final: L + H + O juntos formam o som LHO.",
+    "blocos": [
+      { "texto": "BA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ba" },
+      { "texto": "RU", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ru" },
+      { "texto": "LHO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "lho" }
+    ]
+  },
+  {
+    "id": "dg-06",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "chave",
+    "dica": "C + H juntos fazem som de X: CHA é um bloco de 3 letras.",
+    "blocos": [
+      { "texto": "CHA", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "xá" },
+      { "texto": "VE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ve" }
+    ]
+  },
+  {
+    "id": "dg-07",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "mochila",
+    "dica": "No meio da palavra, C + H + I formam o bloco CHI (som de XI).",
+    "blocos": [
+      { "texto": "MO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "mo" },
+      { "texto": "CHI", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "xi" },
+      { "texto": "LA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "la" }
+    ]
+  },
+  {
+    "id": "dg-08",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "chuva",
+    "dica": "C + H + U se juntam em um único bloco com som de XU.",
+    "blocos": [
+      { "texto": "CHU", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "xu" },
+      { "texto": "VA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "va" }
+    ]
+  },
+  {
+    "id": "dg-09",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "carro",
+    "dica": "RR juntos produzem um único som forte de R entre vogais: RRO.",
+    "blocos": [
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" },
+      { "texto": "RRO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "rro" }
+    ]
+  },
+  {
+    "id": "dg-10",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "corrida",
+    "dica": "O dígrafo RR em RRI mantém o som forte de R no meio da palavra.",
+    "blocos": [
+      { "texto": "CO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "co" },
+      { "texto": "RRI", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "rri" },
+      { "texto": "DA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "da" }
+    ]
+  },
+  {
+    "id": "dg-11",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "passo",
+    "dica": "SS juntos mantêm o som de S forte entre vogais (sem virar som de Z).",
+    "blocos": [
+      { "texto": "PA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "pa" },
+      { "texto": "SSO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "sso" }
+    ]
+  },
+  {
+    "id": "dg-12",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "acesso",
+    "dica": "Começa com a vogal A, depois CE e o dígrafo SSO com som forte de S.",
+    "blocos": [
+      { "texto": "A", "tipo": "silaba_simples", "qtd_letras": 1, "som_guia": "a" },
+      { "texto": "CE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "sé" },
+      { "texto": "SSO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "sso" }
+    ]
+  },
+  {
+    "id": "dg-13",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "queda",
+    "dica": "Em QUE, o U não é pronunciado: Q + U + E formam o som KE (3 letras juntas).",
+    "blocos": [
+      { "texto": "QUE", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "qué" },
+      { "texto": "DA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "da" }
+    ]
+  },
+  {
+    "id": "dg-14",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "máquina",
+    "dica": "Em QUI, o U é mudo: Q + U + I formam um bloco único com som de KI.",
+    "blocos": [
+      { "texto": "MÁ", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "má" },
+      { "texto": "QUI", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "qui" },
+      { "texto": "NA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "na" }
+    ]
+  },
+  {
+    "id": "dg-15",
+    "nivel": 2,
+    "categoria": "digrafos",
+    "palavra": "aqui",
+    "dica": "A vogal A seguida do dígrafo QUI (3 letras, som de KI).",
+    "blocos": [
+      { "texto": "A", "tipo": "silaba_simples", "qtd_letras": 1, "som_guia": "a" },
+      { "texto": "QUI", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "qui" }
+    ]
+  },
+  {
+    "id": "tr-01",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "trabalho",
+    "dica": "Combina encontro consonantal no início (TRA) e dígrafo no final (LHO).",
+    "blocos": [
+      { "texto": "TRA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "tra" },
+      { "texto": "BA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ba" },
+      { "texto": "LHO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "lho" }
+    ]
+  },
+  {
+    "id": "ec-02",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "troca",
+    "dica": "T + R + O saem juntos sem pausa entre T e R: TRO.",
+    "blocos": [
+      { "texto": "TRO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "tró" },
+      { "texto": "CA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ca" }
+    ]
+  },
+  {
+    "id": "ec-03",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "prato",
+    "dica": "P + R + A formam o bloco PRA (3 letras juntas, sem vogal entre P e R).",
+    "blocos": [
+      { "texto": "PRA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "pra" },
+      { "texto": "TO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "to" }
+    ]
+  },
+  {
+    "id": "ec-04",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "bloco",
+    "dica": "B + L + O formam o encontro consonantal BLO (3 letras no primeiro bloco).",
+    "blocos": [
+      { "texto": "BLO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "bló" },
+      { "texto": "CO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "co" }
+    ]
+  },
+  {
+    "id": "ec-05",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "creme",
+    "dica": "C + R + E formam o bloco CRE. O C tem som de K ligado direto ao R.",
+    "blocos": [
+      { "texto": "CRE", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "crê" },
+      { "texto": "ME", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "me" }
+    ]
+  },
+  {
+    "id": "ec-06",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "frase",
+    "dica": "F + R + A formam o bloco FRA. No segundo bloco, SE entre vogais tem som de ZE.",
+    "blocos": [
+      { "texto": "FRA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "fra" },
+      { "texto": "SE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ze" }
+    ]
+  },
+  {
+    "id": "ec-07",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "grupo",
+    "dica": "G + R + U saem em um bloco só: GRU + PO.",
+    "blocos": [
+      { "texto": "GRU", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "gru" },
+      { "texto": "PO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "po" }
+    ]
+  },
+  {
+    "id": "ec-08",
+    "nivel": 2,
+    "categoria": "encontros_consonantais",
+    "palavra": "plano",
+    "dica": "P + L + A formam o encontro consonantal PLA.",
+    "blocos": [
+      { "texto": "PLA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "pla" },
+      { "texto": "NO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "no" }
+    ]
+  },
+  {
+    "id": "ec-09",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "problema",
+    "dica": "Dois encontros consonantais seguidos: PRO (3 letras) + BLE (3 letras) + MA.",
+    "blocos": [
+      { "texto": "PRO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "pro" },
+      { "texto": "BLE", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "blê" },
+      { "texto": "MA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ma" }
+    ]
+  },
+  {
+    "id": "ec-10",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "projeto",
+    "dica": "Começa com o encontro consonantal PRO, seguido de JE e TO.",
+    "blocos": [
+      { "texto": "PRO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "pro" },
+      { "texto": "JE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "jé" },
+      { "texto": "TO", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "to" }
+    ]
+  },
+  {
+    "id": "ec-11",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "brilho",
+    "dica": "Dois blocos de 3 letras: o encontro BRI + o dígrafo LHO.",
+    "blocos": [
+      { "texto": "BRI", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "bri" },
+      { "texto": "LHO", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "lho" }
+    ]
+  },
+  {
+    "id": "ec-12",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "clique",
+    "dica": "Une o encontro consonantal CLI (3 letras) com o dígrafo QUE (3 letras).",
+    "blocos": [
+      { "texto": "CLI", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "cli" },
+      { "texto": "QUE", "tipo": "digrafo", "qtd_letras": 3, "som_guia": "que" }
+    ]
+  },
+  {
+    "id": "ec-13",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "planeta",
+    "dica": "Começa com PLA (3 letras), depois duas sílabas simples: NE + TA.",
+    "blocos": [
+      { "texto": "PLA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "pla" },
+      { "texto": "NE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "nê" },
+      { "texto": "TA", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "ta" }
+    ]
+  },
+  {
+    "id": "ec-14",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "letra",
+    "dica": "O encontro consonantal aparece no fim: LE (2 letras) + TRA (3 letras).",
+    "blocos": [
+      { "texto": "LE", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "lê" },
+      { "texto": "TRA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "tra" }
+    ]
+  },
+  {
+    "id": "ec-15",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "livro",
+    "dica": "LI (2 letras) + VRO (encontro consonantal de 3 letras).",
+    "blocos": [
+      { "texto": "LI", "tipo": "silaba_simples", "qtd_letras": 2, "som_guia": "li" },
+      { "texto": "VRO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "vro" }
+    ]
+  },
+  {
+    "id": "ec-16",
+    "nivel": 3,
+    "categoria": "encontros_consonantais",
+    "palavra": "quadro",
+    "dica": "Dois blocos de 3 letras: QUA (aqui o U aparece no som) + DRO (encontro consonantal).",
+    "blocos": [
+      { "texto": "QUA", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "qua" },
+      { "texto": "DRO", "tipo": "encontro_consonantal", "qtd_letras": 3, "som_guia": "dro" }
+    ]
+  }
+]

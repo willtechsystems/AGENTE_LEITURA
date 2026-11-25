@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1120" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Decodifica · Leitura por Blocos</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Cabeçalho limpo e compacto -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">D</div>
+        <div class="brand-copy">
+          <h1>Decodifica</h1>
+          <span id="audioStatusBadge" class="status-pill">Carregando...</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <div id="xpPill" class="xp-pill" title="XP e sequência de dias">0 XP · 0d</div>
+        <button id="openGeneratorBtn" class="icon-btn" type="button" title="Gerar novas palavras com IA" aria-label="Gerar novas palavras">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </button>
+        <button id="themeToggleBtn" class="icon-btn" type="button" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Navegação principal: Trilha | Treinar | Meus Textos -->
+    <nav class="primary-nav" role="tablist" aria-label="Seções principais">
+      <button class="primary-tab is-active" role="tab" aria-selected="true" data-section="career" type="button">
+        Trilha
+      </button>
+      <button class="primary-tab" role="tab" aria-selected="false" data-section="practice" type="button">
+        Treinar
+      </button>
+      <button class="primary-tab" role="tab" aria-selected="false" data-section="reading" type="button">
+        Meus Textos
+      </button>
+    </nav>
+
+    <!-- Controle global de velocidade (sempre acessível) -->
+    <div class="global-utility-bar">
+      <span id="contextHint" class="context-hint">Trilha de decodificação</span>
+      <button id="speedToggleBtn" class="speed-toggle" type="button" aria-pressed="false" title="Alternar velocidade do áudio">
+        <span class="speed-dot" aria-hidden="true"></span>
+        <span id="speedLabel">Normal 1x</span>
+      </button>
+    </div>
+
+    <!-- ==================== SEÇÃO 1: TRILHA (CARREIRA & MEMÓRIA) ==================== -->
+    <section id="sectionCareer" class="section-view">
+      <div id="careerContainer" class="career-stack">
+        <div class="empty-state">Carregando sua trilha...</div>
+      </div>
+    </section>
+
+    <!-- ==================== SEÇÃO 2: TREINAR BLOCOS ==================== -->
+    <section id="sectionPractice" class="section-view" hidden>
+      <!-- Banner quando está treinando uma unidade específica ou revisão -->
+      <div id="activeScopeBanner" class="scope-banner" hidden>
+        <span id="activeScopeText">Unidade selecionada</span>
+        <button id="clearScopeBtn" class="mini-chip" type="button">Ver todas</button>
+      </div>
+
+      <!-- Sub-modos: Explorar | Montar | Qual é o bloco? -->
+      <nav class="mode-tabs" role="tablist" aria-label="Modos de prática">
+        <button class="mode-tab is-active" role="tab" aria-selected="true" data-mode="explore" type="button">
+          Explorar
+        </button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="build" type="button">
+          Montar
+        </button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="quiz" type="button">
+          Qual é o bloco?
+        </button>
+      </nav>
+
+      <!-- Filtros horizontais -->
+      <div class="filters-bar" id="practiceFilters">
+        <div class="chip-row" id="categoryFilters">
+          <button class="filter-chip is-active" data-category="all" type="button">Todas</button>
+          <button class="filter-chip" data-category="silabas_simples" type="button">Sílabas simples</button>
+          <button class="filter-chip" data-category="digrafos" type="button">Dígrafos (NH, LH, CH...)</button>
+          <button class="filter-chip" data-category="encontros_consonantais" type="button">Encontros (TR, PR, BL...)</button>
+          <button class="filter-chip" data-category="mistas" type="button">Mistas / Leitura</button>
+        </div>
+
+        <div class="level-group" id="levelFilters" role="group" aria-label="Filtrar por nível">
+          <button class="mini-chip is-active" data-level="all" type="button">Todos níveis</button>
+          <button class="mini-chip" data-level="1" type="button">Nível 1</button>
+          <button class="mini-chip" data-level="2" type="button">Nível 2</button>
+          <button class="mini-chip" data-level="3" type="button">Nível 3</button>
+        </div>
+      </div>
+
+      <!-- Progresso da fila -->
+      <div class="progress-strip">
+        <div class="progress-meta">
+          <span id="wordCounter">0 / 0</span>
+          <span id="practicedCounter">0 dominadas</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Card principal de prática -->
+      <main id="practiceCard" class="practice-card" aria-live="polite">
+        <div class="empty-state">Carregando palavras...</div>
+      </main>
+
+      <!-- Legenda -->
+      <div class="legend-strip" aria-label="Legenda dos tipos de bloco">
+        <span class="legend-item"><i class="dot dot-simple"></i>Simples</span>
+        <span class="legend-item"><i class="dot dot-digraph"></i>Dígrafo</span>
+        <span class="legend-item"><i class="dot dot-cluster"></i>Encontro</span>
+        <span class="legend-item"><i class="dot dot-complex"></i>Complexa</span>
+      </div>
+
+      <!-- Navegação inferior -->
+      <footer class="bottom-nav">
+        <button id="prevWordBtn" class="nav-btn" type="button" aria-label="Palavra anterior">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          <span>Anterior</span>
+        </button>
+
+        <button id="shuffleBtn" class="nav-btn nav-btn-ghost" type="button" title="Embaralhar ordem" aria-label="Embaralhar palavras">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16 3 21 3 21 8"/>
+            <line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/>
+            <line x1="15" y1="15" x2="21" y2="21"/>
+            <line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
+        </button>
+
+        <button id="nextWordBtn" class="nav-btn nav-btn-primary" type="button" aria-label="Próxima palavra">
+          <span>Próxima</span>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </footer>
+    </section>
+
+    <!-- ==================== SEÇÃO 3: MEUS TEXTOS (PDF / DOCX / TEXTO) ==================== -->
+    <section id="sectionReading" class="section-view" hidden>
+      <div id="readingContainer" class="reading-stack">
+        <div class="empty-state">Carregando seus materiais...</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast discreto -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Modal: Gerar novas palavras com OpenAI -->
+  <div id="generatorModal" class="modal-backdrop" hidden>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="generatorTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="generatorTitle">Gerar novas palavras</h2>
+          <p class="modal-subtitle">Expande o banco local com blocos validados via OpenAI.</p>
+        </div>
+        <button id="closeGeneratorBtn" class="icon-btn" type="button" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="generatorOfflineNotice" class="notice-box" hidden>
+        A chave <code>OPENAI_API_KEY</code> ainda não está configurada no servidor. O app continua funcionando normalmente com o banco local.
+      </div>
+
+      <form id="generatorForm" class="generator-form">
+        <div class="form-group">
+          <label>Foco principal</label>
+          <div class="option-grid" id="genFocusOptions">
+            <button type="button" class="select-pill is-active" data-value="digrafos">Dígrafos</button>
+            <button type="button" class="select-pill" data-value="encontros_consonantais">Encontros</button>
+            <button type="button" class="select-pill" data-value="silabas_simples">Sílabas simples</button>
+            <button type="button" class="select-pill" data-value="mistas">Mistas</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Junção específica (opcional)</label>
+          <div class="option-grid option-grid-compact" id="genPatternOptions">
+            <button type="button" class="select-pill is-active" data-value="">Variado</button>
+            <button type="button" class="select-pill" data-value="LH">LH</button>
+            <button type="button" class="select-pill" data-value="NH">NH</button>
+            <button type="button" class="select-pill" data-value="CH">CH</button>
+            <button type="button" class="select-pill" data-value="RR">RR</button>
+            <button type="button" class="select-pill" data-value="SS">SS</button>
+            <button type="button" class="select-pill" data-value="QU">QU</button>
+            <button type="button" class="select-pill" data-value="TR">TR</button>
+            <button type="button" class="select-pill" data-value="PR">PR</button>
+            <button type="button" class="select-pill" data-value="BL">BL</button>
+            <button type="button" class="select-pill" data-value="CR">CR</button>
+            <button type="button" class="select-pill" data-value="FR">FR</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nível</label>
+            <div class="option-grid option-grid-3" id="genLevelOptions">
+              <button type="button" class="select-pill" data-value="1">1</button>
+              <button type="button" class="select-pill is-active" data-value="2">2</button>
+              <button type="button" class="select-pill" data-value="3">3</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Quantidade</label>
+            <div class="option-grid option-grid-2" id="genCountOptions">
+              <button type="button" class="select-pill is-active" data-value="3">3</button>
+              <button type="button" class="select-pill" data-value="5">5</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="submitGeneratorBtn" class="primary-action-btn" type="submit">
+          Gerar e salvar no banco local
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Enviar PDF, DOCX ou Texto Puro -->
+  <div id="uploadModal" class="modal-backdrop" hidden>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="uploadTitle">Adicionar conteúdo para leitura</h2>
+          <p class="modal-subtitle">Envie um PDF, Word (.docx), .txt ou cole um texto curto.</p>
+        </div>
+        <button id="closeUploadBtn" class="icon-btn" type="button" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="uploadForm" class="generator-form">
+        <div class="form-group">
+          <label for="materialTitleInput">Título (opcional)</label>
+          <input id="materialTitleInput" class="text-input" type="text" placeholder="Ex.: Resumo de História, Texto da escola..." maxlength="80" />
+        </div>
+
+        <div class="form-group">
+          <label for="materialFileInput">Enviar arquivo (.pdf, .docx ou .txt)</label>
+          <input id="materialFileInput" class="file-input" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" />
+        </div>
+
+        <div class="divider-label">ou cole o texto abaixo</div>
+
+        <div class="form-group">
+          <label for="materialTextInput">Texto puro</label>
+          <textarea id="materialTextInput" class="text-area" rows="5" placeholder="Cole aqui um parágrafo, resumo ou atividade para acompanhar a leitura por frases e blocos..."></textarea>
+        </div>
+
+        <button id="submitUploadBtn" class="primary-action-btn" type="submit">
+          Criar leitura guiada
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

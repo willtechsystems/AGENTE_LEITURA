@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: decodifica-leitura
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_TTS_MODEL
+        value: gpt-4o-mini-tts
+      - key: OPENAI_TTS_VOICE
+        value: coral
+      - key: OPENAI_CHAT_MODEL
+        value: gpt-4o-mini

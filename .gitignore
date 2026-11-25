@@ -1,0 +1,10 @@
+.env
+node_modules/
+cache/audio/*.mp3
+cache/audio/*.tmp
+data/*.tmp
+data/progress.json
+data/materials.json
+data/syllable_cache.json
+.DS_Store
+Thumbs.db
