@@ -50,6 +50,51 @@ const MIME_TYPES = {
 
 const inflightAudioRequests = new Map();
 
+// Rate limiting em memória por IP para evitar abuso de créditos da OpenAI
+const rateBuckets = new Map();
+function checkRateLimit(req, bucketName, maxRequests, windowMs) {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = (Array.isArray(forwarded) ? forwarded[0] : String(forwarded || ''))
+    .split(',')[0]
+    .trim() || req.socket?.remoteAddress || 'local';
+  const key = `${bucketName}:${ip}`;
+  const now = Date.now();
+  const entry = rateBuckets.get(key);
+
+  if (!entry || now > entry.resetAt) {
+    rateBuckets.set(key, { count: 1, resetAt: now + windowMs });
+    return { allowed: true };
+  }
+
+  if (entry.count >= maxRequests) {
+    const retryAfterSec = Math.max(1, Math.ceil((entry.resetAt - now) / 1000));
+    return { allowed: false, retryAfterSec };
+  }
+
+  entry.count += 1;
+  return { allowed: true };
+}
+
+// Limpeza periódica para não acumular memória em uso 24/7
+setInterval(() => {
+  const now = Date.now();
+  for (const [k, v] of rateBuckets.entries()) {
+    if (now > v.resetAt) rateBuckets.delete(k);
+  }
+}, 5 * 60 * 1000).unref();
+
+// Cabeçalhos de segurança para proteger o celular de quem acessa
+function applySecurityHeaders(res) {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+  );
+}
+
 function sendJson(res, statusCode, payload) {
   const body = JSON.stringify(payload);
   res.writeHead(statusCode, {
@@ -173,9 +218,19 @@ function getLocalNetworkIps() {
 }
 
 const server = http.createServer(async (req, res) => {
+  applySecurityHeaders(res);
   try {
     const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
     const pathname = decodeURIComponent(url.pathname);
+
+    // Rate limit global para rotas de API (180 req/min por IP)
+    if (pathname.startsWith('/api/')) {
+      const globalRl = checkRateLimit(req, 'api', 180, 60 * 1000);
+      if (!globalRl.allowed) {
+        res.setHeader('Retry-After', String(globalRl.retryAfterSec));
+        return sendJson(res, 429, { error: 'Muitas requisições. Aguarde alguns segundos.' });
+      }
+    }
 
     // Health & Config
     if (pathname === '/api/health' && req.method === 'GET') {
@@ -214,6 +269,10 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === '/api/words/generate' && req.method === 'POST') {
+      const rl = checkRateLimit(req, 'ai-generate', 10, 10 * 60 * 1000);
+      if (!rl.allowed) {
+        return sendJson(res, 429, { error: 'Limite de geração temporariamente atingido. Aguarde alguns minutos.' });
+      }
       if (!isOpenAIConfigured()) {
         return sendJson(res, 503, {
           error:
@@ -326,6 +385,10 @@ const server = http.createServer(async (req, res) => {
 
     const materialAnalyzeMatch = /^\/api\/materials\/([^/]+)\/analyze$/.exec(pathname);
     if (materialAnalyzeMatch && req.method === 'POST') {
+      const rl = checkRateLimit(req, 'ai-analyze', 30, 10 * 60 * 1000);
+      if (!rl.allowed) {
+        return sendJson(res, 429, { error: 'Limite de análise temporariamente atingido. Aguarde alguns minutos.' });
+      }
       const materialId = materialAnalyzeMatch[1];
       const body = await readJsonBody(req);
       const materials = await loadMaterials();
